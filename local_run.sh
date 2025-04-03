@@ -1,0 +1,1 @@
+echo "starting up the local server"

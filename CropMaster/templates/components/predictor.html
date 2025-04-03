@@ -1,0 +1,100 @@
+{% macro predictor_form(state_form, district_form, predicted_value) %}
+    {% if district_form %}
+        <form class="w-100" action="" method="POST" target="_self" autocomplete="off">
+            {{ district_form.hidden_tag() }}
+            <fieldset class="w-100 d-flex justify-content-center align-items-center">
+                <div class="bg-white rounded-5 mt-5 p-5 w-50">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-center">
+                            {{ district_form.district.label(class="form-label text-dark lato-bold fs-5")}}
+                        </div>    
+                        {% if district_form.district.errors %}
+                            {{ district_form.district(class="form-control form-control text-dark is-invalid border-success border-2")}}
+                        {% else %}
+                            {{ district_form.district(class="form-control form-control text-dark border border-2") }}
+                        {% endif %}
+
+                        {% for error in district_form.district.errors %}
+                            <div class="invalid-feedback text-danger">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-center">
+                            {{ district_form.season.label(class="form-label text-dark lato-bold fs-5")}}
+                        </div>    
+                        {% if district_form.season.errors %}
+                            {{ district_form.season(class="form-control form-control text-dark is-invalid border-success border-2")}}
+                        {% else %}
+                            {{ district_form.season(class="form-control form-control text-dark border border-2") }}
+                        {% endif %}
+
+                        {% for error in district_form.season.errors %}
+                            <div class="invalid-feedback text-danger">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3 d-flex justify-content-center">
+                        {{ district_form.predict(class="btn btn-outline-success") }}
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    {% elif state_form %}
+        <form class="w-100" action="" method="POST" target="_self" autocomplete="off">
+            {{ state_form.hidden_tag() }}
+            <fieldset class="w-100 d-flex justify-content-center align-items-center">
+                <div class="bg-white rounded-5 mt-5 p-5 w-50">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-center">
+                            {{ state_form.state.label(class="form-label text-dark lato-bold fs-5")}}
+                        </div>    
+                        {% if state_form.state.errors %}
+                            {{ state_form.state(class="form-control form-control text-dark is-invalid border-success border-2")}}
+                        {% else %}
+                            {{ state_form.state(class="form-control form-control text-dark border border-2") }}
+                        {% endif %}
+            
+                        {% for error in state_form.state.errors %}
+                            <div class="invalid-feedback text-danger">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-center">
+                            {{ state_form.crop.label(class="form-label text-dark lato-bold fs-5")}}
+                        </div>    
+                        {% if state_form.crop.errors %}
+                            {{ state_form.crop(class="form-control form-control text-dark is-invalid border-success border-2")}}
+                        {% else %}
+                            {{ state_form.crop(class="form-control form-control text-dark border border-2") }}
+                        {% endif %}
+            
+                        {% for error in state_form.crop.errors %}
+                            <div class="invalid-feedback text-danger">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-center">
+                            {{ state_form.area.label(class="form-label text-dark lato-bold fs-5")}}
+                        </div>    
+                        {% if state_form.area.errors %}
+                            {{ state_form.area(class="form-control form-control text-dark is-invalid border-success border-2")}}
+                        {% else %}
+                            {{ state_form.area(class="form-control form-control text-dark border border-2") }}
+                        {% endif %}
+            
+                        {% for error in state_form.area.errors %}
+                            <div class="invalid-feedback text-danger">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3 d-flex justify-content-center">
+                        {{ state_form.proceed_further(class="btn btn-outline-success") }}
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    
+    {% elif predicted_value %}
+        <h1 style="min-height: 60vh; min-width: 60vw;" class="d-flex justify-content-center align-items-center lato-black-italic">
+            You can expect a yield of {{ predicted_value }} tons for the given conditions.
+        </h1>
+    {% endif %}
+{% endmacro %}

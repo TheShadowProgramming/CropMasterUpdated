@@ -1,0 +1,82 @@
+{% macro signup_block(form) %}
+    <div class="">
+        <form action="" method="POST" target="_self" autocomplete="off">
+            {{ form.hidden_tag() }}
+            <fieldset class="w-full">
+                <div class="mb-3">
+                    <Legend class="lato-bold">
+                        Sign Up to get Started with Crop Prediction! 🚜
+                    </Legend>
+                </div>
+                <div class="mb-3"> 
+                    
+                    {{ form.username.label(class="form-label text-dark lato-regular") }} 
+                    
+                    {% if form.username.errors %} 
+                    
+                        {{form.username(class="form-control text-dark form-control-lg is-invalid border border-success border-2")}} 
+                    
+                    {% else %}
+
+                        {{ form.username(class="form-control text-dark
+                        form-control-lg border border-2") }} 
+                    
+                    {% endif %} 
+
+                    {% for error in form.username.errors %}
+                        <div class="invalid-feedback text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+
+                    {{ form.email.label(class="form-label text-dark lato-regular")}}
+
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg text-dark is-invalid border-success border-2")}}
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg text-dark border border-2") }}
+                    {% endif %}
+
+                    {% for error in form.email.errors %}
+                        <div class="invalid-feedback text-danger">{{ error }}</div>
+                    {% endfor %}
+
+                </div>
+                <div class="mb-3">
+
+                    {{ form.password.label(class="form-label text-dark lato-regular")}}
+
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg text-dark is-invalid border border-success border-2") }}
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg text-dark border border-2") }}
+                    {% endif %}
+
+                    {% for error in form.password.errors %}
+                        <div class="invalid-feedback text-danger">{{ error }}</div>
+                    {% endfor %}
+
+                </div>
+                <div class="mb-3">
+
+                    {{ form.confirm_password.label(class="form-label text-dark lato-regular")}}
+
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg text-dark is-invalid border border-success border-2") }}
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg text-dark border border-2") }}
+                    {% endif %}
+
+                    {% for error in form.confirm_password.errors %}
+                        <div class="invalid-feedback text-danger">{{ error }}</div>
+                    {% endfor %}
+
+                </div>
+            </fieldset>
+            <div class="mb-3">
+                {{ form.signup(class="btn btn-success") }}
+            </div>
+        </form>
+    </div>
+{% endmacro %}
+
